@@ -1,0 +1,790 @@
+/* Basic Clean Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'IBM Plex Mono', monospace;
+    /* User requested font */
+    font-weight: 300;
+    /* Light 300 */
+    text-transform: uppercase;
+    /* ALL CAPS */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* min-height: 100vh; Removed to fix sticky footer gap */
+    overflow-x: hidden;
+}
+
+
+
+html {
+    background-color: #000000;
+    min-height: 100%;
+}
+
+/* Header & Logo */
+header {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    /* Spacing between date, logo, and time */
+}
+
+.logo-container {
+    flex-shrink: 0;
+}
+
+.logo {
+    display: block;
+    max-width: 150px;
+    /* Adjust based on preference */
+    height: auto;
+}
+
+.date-display,
+.time-display {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+}
+
+/* Navigation List */
+main {
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Align to top vertically for ALL devices */
+    padding-top: 60px;
+    /* Fixed gap from header for ALL devices */
+    padding-bottom: 60px;
+    /* Ensure gap between content and footer */
+    width: 100%;
+}
+
+/* Media query removed to ensure identical spacing on all devices */
+
+.nav-list {
+    list-style: none;
+    text-align: left;
+    /* Aligns text to left */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Spacing between links */
+    align-items: stretch;
+    /* Items take full width of container */
+    width: fit-content;
+    /* Container shrinks to widest item */
+    padding: 0;
+    /* Ensure no default padding */
+}
+
+/* Force li to behave as flex row aligned to start */
+.nav-list li {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.nav-list li a {
+    color: #ffffff;
+    text-decoration: none;
+    /* Font inherited from body */
+    font-weight: 300;
+    font-size: 0.8rem;
+    /* Matched to time-display size */
+    text-transform: uppercase;
+    /* Ensure links are ALL CAPS */
+}
+
+/* Hover effect */
+.nav-list li a:hover {
+    color: #1C39BB;
+    /* Matched to logo 'H' star blue */
+}
+
+/* Footer */
+footer {
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+    transition: fill 0.2s ease;
+}
+
+.social-icons a:hover .social-icon {
+    fill: #1C39BB;
+    /* Matched to logo 'H' star blue */
+}
+
+.social-icons a {
+    color: #666;
+    text-decoration: none;
+    /* Font inherited from body */
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.social-icons a:hover {
+    color: #fff;
+}
+
+/* Logs Page Specific Styles */
+.logs-main {
+    padding-top: 60px;
+    /* Matched to homepage */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Changed to column to support centering child via align-items */
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logs-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    /* The "Left" in "Left-Centered" */
+}
+
+
+.logs-container details {
+    cursor: pointer;
+}
+
+.logs-container summary {
+    list-style: none;
+    /* Hide default arrow */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    /* Matched to navigation */
+    font-weight: 300;
+    text-transform: uppercase;
+    /* All caps as requested */
+    color: #ffffff;
+}
+
+/* Custom Triangle Icon */
+.logs-container summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.logs-container details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.log-details-list {
+    list-style: none;
+    padding-left: 25px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.log-details-list li {
+    font-size: 0.8rem;
+    /* Matched to navigation */
+    text-transform: uppercase;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inline-thumb {
+    height: 1.2rem;
+    width: auto;
+    border-radius: 2px;
+}
+
+.large-preview {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 5%;
+    /* Moved to Left side per request (flipping from Right) */
+    right: auto;
+    transform: translateY(-50%);
+    width: 300px;
+    height: auto;
+    z-index: 100;
+}
+
+.large-preview iframe,
+.large-preview .twitter-tweet,
+.large-preview img {
+    max-width: 100% !important;
+    height: auto;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin: 0 !important;
+}
+
+.large-preview iframe.youtube-embed {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+}
+
+/* Fix for Twitter/X Widget Cropping */
+.large-preview .twitter-tweet-rendered {
+    height: unset !important;
+    /* Allow Twitter JS to set the height */
+    min-height: 250px;
+    /* Safety fallback */
+}
+
+
+
+/* Active State (Triggered by JS Click) - Always Visible */
+.log-details-list li.is-active .large-preview {
+    display: block !important;
+}
+
+/* Mobile-only description text */
+/* Mobile-only description text (Now also used for Desktop "Popup") */
+.mobile-log-desc {
+    display: none;
+}
+
+/* Desktop Active State for Text */
+@media (min-width: 769px) {
+    .log-details-list li.is-active .mobile-log-desc {
+        display: block;
+        position: fixed;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+        width: fit-content;
+        max-width: 300px;
+        color: #888;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        text-transform: uppercase;
+        z-index: 100;
+        text-align: left;
+
+        /* Requested Dashed Line Style */
+        border: 1px dashed #ffffff;
+        padding: 10px;
+        /* Adjusted padding since it's not a box anymore */
+        background-color: #000;
+        /* Ensure text is readable over anything */
+    }
+}
+
+
+
+
+/* Hidden Scrollbar */
+html {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* Subscribe Page Styles */
+.subscribe-main {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.subscribe-content {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.subscribe-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.subscribe-desc {
+    font-size: 0.75rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #888;
+}
+
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.subscribe-input {
+    background: transparent;
+    border: 1px dashed #ffffff;
+    padding: 12px;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.subscribe-input:focus {
+    border-color: #fff;
+}
+
+.subscribe-button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+/* About Page Styles */
+.about-main {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.about-content {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.about-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.about-text {
+    font-size: 0.8rem;
+    line-height: 2;
+    margin-bottom: 40px;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.about-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.about-links a {
+    font-size: 0.7rem;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+/* Playlist Page Styles */
+.playlist-main {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.playlist-content {
+    max-width: 600px;
+    width: 100%;
+}
+
+.playlist-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.playlist-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.playlist-list li {
+    font-size: 0.8rem;
+    color: #fff;
+    border-bottom: 1px dashed #ffffff;
+    padding-bottom: 10px;
+    transition: color 0.2s, border-bottom-color 0.2s;
+}
+
+/* Now Page Styles */
+.now-main {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.now-content {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.now-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* Shop and Things I Use Styles */
+.shop-main,
+.use-main {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Changed from center to align content to top */
+    padding: 60px 20px 20px 20px;
+    /* Match header-to-content gap from other pages */
+}
+
+.shop-content,
+.use-content {
+    text-align: center;
+    max-width: 1200px;
+    /* Increased to allow spreading items */
+    width: 100%;
+    padding-bottom: 60px;
+    /* Add gap at bottom of page */
+}
+
+.shop-title,
+.use-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.shop-status {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.use-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.use-list li {
+    font-size: 0.8rem;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.use-list img {
+    height: 180px;
+    /* Increased height */
+    width: auto;
+    /* Let width adjust to maintain aspect ratio */
+    border-radius: 4px;
+    margin-top: 5px;
+    object-fit: contain;
+    /* Show full image without cropping */
+}
+
+/* Desktop: Grid layout */
+@media (min-width: 769px) {
+    .use-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 80px 60px;
+        /* More spread out horizontally and vertically */
+        max-width: 100%;
+        /* Use all available space in .use-content */
+        padding: 0 40px;
+        /* Padding on the sides */
+    }
+
+    .use-list li {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        gap: 15px;
+        padding: 0 10px;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .logo {
+        max-width: 100px;
+    }
+
+    .date-display,
+    .time-display {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    /* Mobile 2-column grid for Things I Use */
+    .use-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 10px;
+        padding: 0;
+    }
+
+    .use-list li img {
+        height: 120px;
+        /* Reduced height for 2-column layout */
+    }
+}
+
+/* Row wrapper for logs */
+.log-item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Mobile Dropdown Behavior */
+@media (max-width: 768px) {
+
+    .logs-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center the fixed-width block */
+        gap: 8px;
+        /* Match homepage gap strictly */
+    }
+
+    .logs-container details {
+        width: 280px;
+        /* Fixed width to ensure text stays put and doesn't shift */
+        margin: 0 auto;
+        padding: 0;
+        display: block;
+    }
+
+    .logs-container summary {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+        line-height: inherit;
+        /* Reset to inherit to strictly match desktop/homepage rhythm */
+        min-height: 0;
+    }
+
+    .logs-container summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .log-details-list {
+        padding-left: 0;
+        width: 100%;
+        margin: 8px 0 0 0;
+        gap: 8px;
+        /* Match homepage gap strictly */
+    }
+
+    .log-details-list li {
+        margin: 0;
+        line-height: inherit;
+        /* Inherit global line-height */
+    }
+
+    .log-details-list li.has-preview {
+        flex-direction: column;
+        align-items: flex-start;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .mobile-log-desc {
+        display: none;
+        /* Hidden by default, toggled via JS */
+        font-size: 0.65rem;
+        color: #888;
+        margin-top: 4px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        max-width: 100%;
+        text-align: left;
+
+        /* Reset Desktop Fixed Positioning */
+        position: static;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: auto;
+    }
+
+
+
+    .log-item-row {
+        justify-content: flex-start;
+        /* Align text and thumb to left */
+        width: 100%;
+    }
+
+
+    .large-preview {
+        display: none;
+        width: 100vw;
+        max-width: none;
+
+        /* Breakout Math: 
+           Center of Parent (280px) is at 140px.
+           We want Center of Image (50vw) to be at Center of Parent? 
+           No, Center of Image should be Center of Screen.
+           
+           Since Parent is Centered on Screen, Parent Center == Screen Center.
+           
+           So we want Image Center (50vw) aligned with Parent Center (140px).
+           Shift Left = 50vw - 140px.
+           margin-left: calc(140px - 50vw);
+        */
+        margin-left: calc(140px - 50vw);
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        /* We use margin-left for positioning */
+        transform: none;
+
+        text-align: left;
+        z-index: 10;
+    }
+
+    /* Show dropdown contents (both text and image) when item is clicked */
+    .log-details-list li.is-active .large-preview,
+    .log-details-list li.is-active .mobile-log-desc {
+        display: block;
+    }
+
+    .large-preview iframe.youtube-embed {
+        width: 60vw !important;
+        /* Smaller width for YouTube video specifically */
+    }
+
+    .large-preview iframe,
+    .large-preview .twitter-tweet,
+    .large-preview .twitter-tweet-rendered,
+    .large-preview img {
+        max-width: 500px;
+        width: 70vw !important;
+        /* Force width with !important to override inline styles */
+        margin: 0 auto !important;
+        display: block;
+    }
+}
+
+/* Thoughts Page Styles */
+.thoughts-main {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px 20px 20px;
+}
+
+.thoughts-content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding-bottom: 60px;
+}
+
+.thoughts-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.thoughts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+}
+
+.thought-item {
+    border-bottom: 1px dashed #ffffff;
+    padding-bottom: 20px;
+}
+
+.thought-date {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.thought-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #ccc;
+}
