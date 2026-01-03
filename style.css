@@ -143,8 +143,7 @@ footer {
     header {
         gap: 8px;
         /* Tight gap */
-        margin-top: 90px;
-        /* Increased top gap for mobile */
+        /* margin-top: 90px; REMOVED to inherit 40px from desktop */
     }
 
     body {
@@ -153,15 +152,8 @@ footer {
     }
 
     main {
-        margin-top: 78px;
-        /* Match desktop gap (~78px) */
         padding-top: 0;
-        margin-bottom: 97px;
-        /* Match desktop bottom gap (~97px) */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        /* Force content to top */
+        /* margin-top/bottom REMOVED to inherit flex centering from desktop */
     }
 
     nav,
