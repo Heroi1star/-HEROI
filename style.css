@@ -133,21 +133,22 @@ footer {
 /* Mobile Adjustments */
 @media (max-width: 500px) {
     header {
-        gap: 15px;
-        /* Reduce gap to fit all elements */
+        gap: 10px;
+        /* Tighter gap to fit larger logo */
     }
 
     .logo {
-        height: 160px;
-        /* Text becomes ~15px visual */
-        width: 160px;
-        margin: -72px 0;
+        height: 200px;
+        /* Scaled up for prominence (text becomes ~18px) */
+        width: 200px;
+        margin: -90px 0;
+        /* Updated for 200px height */
     }
 
     .date-display,
     .time-display {
-        font-size: 0.6rem;
-        /* Smaller text to ensure fit */
+        font-size: 0.5rem;
+        /* Smaller text to highlight logo */
     }
 }
 
