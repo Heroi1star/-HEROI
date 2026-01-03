@@ -55,7 +55,9 @@ header {
     display: block;
     height: 435px;
     /* Scale so text is 40px visual */
-    width: auto;
+    width: 435px;
+    /* Fixed width + height = No Squeeze */
+    flex-shrink: 0;
     margin: -197px 0;
     /* Offset solid black phantom space */
 }
@@ -126,6 +128,27 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 500px) {
+    header {
+        gap: 15px;
+        /* Reduce gap to fit all elements */
+    }
+
+    .logo {
+        height: 160px;
+        /* Text becomes ~15px visual */
+        width: 160px;
+        margin: -72px 0;
+    }
+
+    .date-display,
+    .time-display {
+        font-size: 0.6rem;
+        /* Smaller text to ensure fit */
+    }
 }
 
 .social-icons {
@@ -577,9 +600,6 @@ html {
         justify-content: space-evenly;
     }
 
-    .logo {
-        max-width: 100px;
-    }
 
     .date-display,
     .time-display {
