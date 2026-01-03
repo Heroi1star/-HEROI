@@ -53,13 +53,12 @@ header {
 
 .logo {
     display: block;
-    height: 435px;
-    /* Scale so text is 40px visual */
-    width: 435px;
-    /* Fixed width + height = No Squeeze */
+    height: 62.5px;
+    /* Natural scale: 62.5px height gives ~40px content */
+    width: auto;
     flex-shrink: 0;
-    margin: -197px 0;
-    /* Offset solid black phantom space */
+    margin: -13px 0 -10px 0;
+    /* Tight crop: 53px * 0.25 = 13.25, 38px * 0.25 = 9.5 */
 }
 
 .date-display,
@@ -133,22 +132,22 @@ footer {
 /* Mobile Adjustments */
 @media (max-width: 500px) {
     header {
-        gap: 10px;
-        /* Tighter gap to fit larger logo */
+        gap: 8px;
+        /* Tight gap */
     }
 
     .logo {
-        height: 200px;
-        /* Scaled up for prominence (text becomes ~18px) */
-        width: 200px;
-        margin: -90px 0;
-        /* Updated for 200px height */
+        height: 70px;
+        /* Safer width (~224px) for 375px screens */
+        width: auto;
+        margin: -15px 0 -11px 0;
+        /* Adjusted crop */
     }
 
     .date-display,
     .time-display {
         font-size: 0.5rem;
-        /* Smaller text to highlight logo */
+        /* Keep simplified font size */
     }
 }
 
