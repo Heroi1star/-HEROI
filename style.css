@@ -136,6 +136,35 @@ footer {
         /* Tight gap */
     }
 
+    body {
+        justify-content: flex-start;
+        /* Switch to manual spacing for precise control */
+    }
+
+    main {
+        margin-top: 25px;
+        /* Matches horizontal gap (~25px) */
+        padding-top: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* Force content to top */
+    }
+
+    nav,
+    .nav-list {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    footer {
+        margin-top: auto;
+        /* Ensure footer stays at bottom */
+        margin-bottom: 40px;
+        /* Maintain bottom spacing */
+    }
+
     .logo {
         height: auto;
         /* Allow height to scale naturally */
