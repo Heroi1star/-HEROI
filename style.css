@@ -14,10 +14,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    /* Creates 4 identical gaps */
+    justify-content: flex-start;
+    /* Fixed alignment for consistency */
     height: 100vh;
-    /* Fixed height for exact gaps */
+    /* Fixed height for screen */
     width: 100vw;
     overflow: hidden;
     /* Prevent scrolling issues */
@@ -40,6 +40,9 @@ header {
     height: 40px;
     /* Fixed height for symmetry with footer */
     width: 100%;
+    margin-top: 40px;
+    /* STANDARD DESKTOP TOP GAP */
+    flex-shrink: 0;
 }
 
 .logo-container {
@@ -70,7 +73,8 @@ header {
 
 /* Navigation List */
 main {
-    flex-grow: 0;
+    flex-grow: 1;
+    /* Fills space between header/footer */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,6 +131,11 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-top: auto;
+    /* Pushes footer to bottom */
+    margin-bottom: 40px;
+    /* STANDARD DESKTOP BOTTOM GAP */
+    flex-shrink: 0;
 }
 
 /* Mobile Adjustments */
@@ -387,7 +396,7 @@ html {
 
 /* Subscribe Page Styles */
 .subscribe-main {
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -449,7 +458,7 @@ html {
 
 /* About Page Styles */
 .about-main {
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -495,7 +504,7 @@ html {
 
 /* Playlist Page Styles */
 .playlist-main {
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -532,7 +541,7 @@ html {
 
 /* Now Page Styles */
 .now-main {
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -555,7 +564,7 @@ html {
 /* Shop and Things I Use Styles */
 .shop-main,
 .use-main {
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: flex-start;
