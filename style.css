@@ -44,8 +44,7 @@ header {
 
 .logo-container {
     height: 40px;
-    width: 150px;
-    overflow: hidden;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,10 +53,11 @@ header {
 
 .logo {
     display: block;
-    height: 280px;
-    /* Visual crop: scale up to show only the text */
+    height: 435px;
+    /* Scale so text is 40px visual */
     width: auto;
-    flex-shrink: 0;
+    margin: -197px 0;
+    /* Offset solid black phantom space */
 }
 
 .date-display,
