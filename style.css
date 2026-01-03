@@ -138,12 +138,13 @@ footer {
     flex-shrink: 0;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 500px) {
+/* Mobile & Tablet Adjustments */
+@media (max-width: 800px) {
     header {
         gap: 8px;
         /* Tight gap */
-        /* margin-top: 90px; REMOVED to inherit 40px from desktop */
+        margin-top: 20px;
+        /* Reduced top gap for mobile/tablet as requested */
     }
 
     body {
