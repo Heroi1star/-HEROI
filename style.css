@@ -144,8 +144,8 @@ footer {
     }
 
     main {
-        margin-top: 25px;
-        /* Matches horizontal gap (~25px) */
+        margin-top: 78px;
+        /* Match desktop gap (~78px) */
         padding-top: 0;
         flex-grow: 1;
         display: flex;
