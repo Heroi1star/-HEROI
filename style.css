@@ -9,16 +9,18 @@ body {
     background-color: #000000;
     color: #ffffff;
     font-family: 'IBM Plex Mono', monospace;
-    /* User requested font */
     font-weight: 300;
-    /* Light 300 */
     text-transform: uppercase;
-    /* ALL CAPS */
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
+    justify-content: space-evenly;
+    /* Creates 4 identical gaps */
+    height: 100vh;
+    /* Fixed height for exact gaps */
+    width: 100vw;
+    overflow: hidden;
+    /* Prevent scrolling issues */
 }
 
 
@@ -30,24 +32,32 @@ html {
 
 /* Header & Logo */
 header {
-    margin-top: 40px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    /* Spacing between date, logo, and time */
+    height: 40px;
+    /* Fixed height for symmetry with footer */
+    width: 100%;
 }
 
 .logo-container {
+    height: 40px;
+    width: 150px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 }
 
 .logo {
     display: block;
-    max-width: 150px;
-    /* Adjust based on preference */
-    height: auto;
+    height: 280px;
+    /* Visual crop: scale up to show only the text */
+    width: auto;
+    flex-shrink: 0;
 }
 
 .date-display,
@@ -59,7 +69,7 @@ header {
 
 /* Navigation List */
 main {
-    flex-grow: 1;
+    flex-grow: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,8 +120,12 @@ main {
 
 /* Footer */
 footer {
-    margin-bottom: 31px;
-    padding: 0;
+    height: 40px;
+    /* Same height as header for perfect centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .social-icons {
