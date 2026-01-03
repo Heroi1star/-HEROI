@@ -194,8 +194,8 @@ footer {
 }
 
 .social-icon {
-    width: 20px;
-    height: 20px;
+    width: 0.8rem;
+    height: 0.8rem;
     fill: #ffffff;
     transition: fill 0.2s ease;
 }
