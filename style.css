@@ -134,8 +134,8 @@ footer {
     header {
         gap: 8px;
         /* Tight gap */
-        margin-top: 40px;
-        /* Match web version top gap */
+        margin-top: 60px;
+        /* Increased top gap for mobile */
     }
 
     body {
