@@ -147,7 +147,8 @@ footer {
         margin-top: 78px;
         /* Match desktop gap (~78px) */
         padding-top: 0;
-        flex-grow: 1;
+        margin-bottom: 97px;
+        /* Match desktop bottom gap (~97px) */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -161,10 +162,12 @@ footer {
     }
 
     footer {
-        margin-top: auto;
-        /* Ensure footer stays at bottom */
-        margin-bottom: 40px;
-        /* Maintain bottom spacing */
+        height: 60px;
+        /* Adjust height to contain icon comfortably */
+        margin-top: 0;
+        /* Remove auto push */
+        margin-bottom: 20px;
+        flex-shrink: 0;
     }
 
     .logo {
