@@ -16,11 +16,12 @@ body {
     align-items: center;
     justify-content: flex-start;
     /* Fixed alignment for consistency */
-    height: 100vh;
-    /* Fixed height for screen */
+    min-height: 100vh;
+    /* Allow page to grow */
     width: 100vw;
-    overflow: hidden;
-    /* Prevent scrolling issues */
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Allow vertical scrolling */
 }
 
 
