@@ -120,8 +120,8 @@ main {
 
 /* Hover effect */
 .nav-list li a:hover {
-    color: #1C39BB;
-    /* Matched to logo 'H' star blue */
+    color: #0438A2;
+    /* Matched to logo 'H' star blue (Sampled: #0438A2) */
 }
 
 /* Footer */
@@ -206,8 +206,8 @@ footer {
 }
 
 .social-icons a:hover .social-icon {
-    fill: #1C39BB;
-    /* Matched to logo 'H' star blue */
+    fill: #0438A2;
+    /* Matched to logo 'H' star blue (Sampled: #0438A2) */
 }
 
 .social-icons a {
@@ -449,13 +449,49 @@ html {
     transition: opacity 0.2s;
 }
 
+.subscribe-button:hover {
+    opacity: 0.8;
+}
+
+.subscribe-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.subscribe-message {
+    color: #888;
+    /* Lighter/Dimmer */
+    font-size: 0.75rem;
+    /* Smaller */
+    margin-top: 27px;
+    letter-spacing: 1px;
+    animation: fadeIn 0.5s ease;
+    text-align: center;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 /* About Page Styles */
 .about-main {
     /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 37px 20px 20px 20px;
+    /* Top padding 37px creates ~27px gap from logo, matching Logo-to-Top gap */
+
 }
 
 .about-content {
@@ -467,18 +503,33 @@ html {
 .about-title {
     font-size: 1rem;
     font-weight: 300;
-    margin-bottom: 30px;
+    margin-bottom: 27px;
+    /* Adjusted from 30px to match 27.25px symmetrical gap */
     letter-spacing: 2px;
 }
 
 .about-text {
+    text-align: left;
+    /* Left align text within centered container */
     font-size: 0.8rem;
     line-height: 2;
     margin-bottom: 40px;
-    color: #ccc;
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.about-text a {
+    color: #0438A2;
+    /* User confirmed hex code */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.about-text a:hover {
+    color: #fff;
+    /* Brighten on hover */
 }
 
 .about-links {
@@ -534,11 +585,12 @@ html {
 
 /* Now Page Styles */
 .now-main {
-    /* height: calc(100vh - 200px); REMOVED */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 37px 20px 20px 20px;
+    height: auto;
+    flex-grow: 1;
 }
 
 .now-content {
@@ -555,15 +607,24 @@ html {
 }
 
 /* Shop and Things I Use Styles */
-.shop-main,
+/* Shop Main - Centered Horizontally, Top Aligned Vertically */
+.shop-main {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 37px 20px 20px 20px;
+    height: auto;
+    flex-grow: 1;
+}
+
 .use-main {
     /* height: calc(100vh - 200px); REMOVED */
     display: flex;
     justify-content: center;
     align-items: flex-start;
     /* Changed from center to align content to top */
-    padding: 60px 20px 40px 20px;
-    /* Match header-to-content gap from other pages */
+    padding: 60px 20px 25px 20px;
+    /* Visual bottom padding (adjusted for line-height) matches ~27px Top Gap */
 }
 
 .shop-content,
@@ -572,8 +633,8 @@ html {
     max-width: 1200px;
     /* Increased to allow spreading items */
     width: 100%;
-    padding-bottom: 60px;
-    /* Add gap at bottom of page */
+    padding-bottom: 0px;
+    /* Removed padding, relying on footer margin */
 }
 
 .shop-title,
@@ -858,4 +919,116 @@ html {
     font-size: 0.85rem;
     line-height: 1.6;
     color: #ccc;
+}
+
+/* Mobile-specific Page Overrides */
+@media (max-width: 500px) {
+
+    /* Things I Use: Match 40px Top Gap */
+    .use-main {
+        padding-bottom: 40px;
+    }
+}
+
+/* Video Container for Now Page */
+.video-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.video-container iframe {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+/* Shared Article Section Styles */
+.article-section {
+    margin-top: 80px;
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.article-title {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.article-subtitle {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 25px;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.article-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.article-text p {
+    margin: 0;
+}
+
+
+/* Desktop Navigation: Horizontal links */
+@media (min-width: 501px) {
+    .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 35px;
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+        margin: 37px auto 0 auto;
+        /* Center container + 37px top gap for symmetry */
+    }
+
+    .nav-list li {
+        width: auto;
+        justify-content: center;
+    }
+}
+
+
+/* FORCE MAIN LAYOUT FIX */
+main {
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+/* FORCE SUBSCRIBE PADDING FIX */
+.subscribe-main {
+    padding: 37px 20px 20px 20px !important;
+}
+
+/* About Avatar */
+.about-avatar {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 30px auto;
 }

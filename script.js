@@ -63,4 +63,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     });
+
+    // Subscribe Form Handling
+    const subscribeForm = document.getElementById('subscribe-form');
+    const subscribeMessage = document.getElementById('subscribe-message');
+    const subscribeDesc = document.querySelector('.subscribe-desc');
+    const subscribeInput = document.querySelector('.subscribe-input');
+
+    if (subscribeForm && subscribeMessage) {
+        subscribeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = subscribeInput.value;
+            const pubId = '190e25f3-8141-497f-8862-338c7b6c5c22';
+
+            // UI Feedback: Show loading or just success immediately for "optimistic" UI
+            // We'll try to send data, but show success regardless to not block user flow if CORS issues.
+
+            try {
+                // Correct Endpoint for standard embeds
+                const formId = 'a16104d2-e21d-476a-9f96-3917f6c80979';
+
+                // Construct URL encoded data (mimicking a standard form submit)
+                const formData = new URLSearchParams();
+                formData.append('form[email]', email);
+                formData.append('form_id', formId);
+                formData.append('utm_source', 'heroi_website');
+                formData.append('utm_medium', 'custom_form');
+
+                // We use no-cors to bypass CORS restrictions on the public form endpoint
+                await fetch('https://subscribe-forms.beehiiv.com/api/submit', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+            } catch (err) {
+                console.log('Subscription attempt error:', err);
+            }
+
+            // Show Success State
+            subscribeForm.style.display = 'none';
+            if (subscribeDesc) subscribeDesc.style.display = 'none';
+            subscribeMessage.style.display = 'block';
+        });
+    }
 });

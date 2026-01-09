@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+ <title>HEROI</title>
+ <description>Updates from HEROI: Logs and Thoughts.</description>
+ <link>https://heroi.com</link>
+ <lastBuildDate>Fri, 09 Jan 2026 14:00:00 GMT</lastBuildDate>
+ <pubDate>Fri, 09 Jan 2026 14:00:00 GMT</pubDate>
+ <ttl>1800</ttl>
+
+ <item>
+  <title>DECEMBER 28, 2025</title>
+  <description>JUST THINKING ABOUT HOW MINIMALISM IS NOT JUST ABOUT LESS, IT'S ABOUT THE RIGHT STUFF.</description>
+  <link>https://heroi.com/index.html</link>
+  <guid isPermaLink="false">index-2025-12-28</guid>
+  <pubDate>Sun, 28 Dec 2025 12:00:00 GMT</pubDate>
+ </item>
+
+ <item>
+  <title>FRIDAY, DECEMBER 26TH</title>
+  <description>World Cup Ball, Blackberry, Steve Jobs, Coke Ad, SoulDrain.</description>
+  <link>https://heroi.com/logs.html#dec26</link>
+  <guid isPermaLink="false">logs-2025-12-26</guid>
+  <pubDate>Fri, 26 Dec 2025 12:00:00 GMT</pubDate>
+ </item>
+
+ <item>
+  <title>THURSDAY, DECEMBER 25TH</title>
+  <description>MERRY CHRISTMAS</description>
+  <link>https://heroi.com/logs.html#dec25</link>
+  <guid isPermaLink="false">logs-2025-12-25</guid>
+  <pubDate>Thu, 25 Dec 2025 12:00:00 GMT</pubDate>
+ </item>
+
+ <item>
+  <title>WEDNESDAY, DECEMBER 24TH</title>
+  <description>PREPARING FOR THE HOLIDAYS</description>
+  <link>https://heroi.com/logs.html#dec24</link>
+  <guid isPermaLink="false">logs-2025-12-24</guid>
+  <pubDate>Wed, 24 Dec 2025 12:00:00 GMT</pubDate>
+ </item>
+
+</channel>
+</rss>
