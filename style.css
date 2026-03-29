@@ -6,8 +6,8 @@
 }
 
 body {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #ff7900;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 300;
     text-transform: uppercase;
@@ -27,7 +27,7 @@ body {
 
 
 html {
-    background-color: #000000;
+    background-color: transparent;
     min-height: 100%;
 }
 
@@ -36,18 +36,19 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 40px;
-    height: 40px;
-    /* Fixed height for symmetry with footer */
+    height: auto;
+    /* Adapts to avatar */
     width: 100%;
     margin-top: 40px;
-    /* STANDARD DESKTOP TOP GAP */
+    margin-bottom: 30px;
+    /* 30px GAP TO LINKS FOR SYMMETRY */
     flex-shrink: 0;
 }
 
 .logo-container {
-    height: 40px;
+    height: auto;
     width: auto;
     display: flex;
     align-items: center;
@@ -55,14 +56,33 @@ header {
     flex-shrink: 0;
 }
 
+.logo-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-decoration: none;
+}
+
+.header-avatar {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0;
+}
+
 .logo {
     display: block;
-    height: 62.5px;
-    /* Natural scale: 62.5px height gives ~40px content */
-    width: auto;
+    font-family: 'Google Sans Flex', sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    color: #ff7900;
+    letter-spacing: 2px;
+    text-decoration: none;
     flex-shrink: 0;
-    margin: -13px 0 -10px 0;
-    /* Tight crop: 53px * 0.25 = 13.25, 38px * 0.25 = 9.5 */
+    margin: 0;
+    line-height: 1;
 }
 
 .date-display,
@@ -70,6 +90,8 @@ header {
     font-size: 0.8rem;
     letter-spacing: 0.5px;
     font-weight: 300;
+    margin-top: 34px;
+    /* Centers text relative to 85px avatar */
 }
 
 /* Navigation List */
@@ -77,8 +99,11 @@ main {
     flex-grow: 1;
     /* Fills space between header/footer */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+    /* Gap handled by header margin-bottom */
     width: 100%;
 }
 
@@ -108,7 +133,7 @@ main {
 }
 
 .nav-list li a {
-    color: #ffffff;
+    color: #ff7900;
     text-decoration: none;
     /* Font inherited from body */
     font-weight: 300;
@@ -120,8 +145,8 @@ main {
 
 /* Hover effect */
 .nav-list li a:hover {
-    color: #0438A2;
-    /* Matched to logo 'H' star blue (Sampled: #0438A2) */
+    color: #ff7900;
+    /* Matched to logo orange (#ff7900) */
 }
 
 /* Footer */
@@ -144,23 +169,19 @@ footer {
     header {
         gap: 8px;
         /* Tight gap */
-        /* margin-top: 90px; REMOVED to inherit 40px from desktop */
-    }
-
-    body {
-        justify-content: flex-start;
-        /* Switch to manual spacing for precise control */
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     main {
-        padding-top: 0;
-        /* margin-top/bottom REMOVED to inherit flex centering from desktop */
+        padding-top: 30px !important;
+        /* Balanced 30px gap for symmetry on mobile */
     }
 
-    nav,
-    .nav-list {
-        margin-top: 0;
-        padding-top: 0;
+    .video-container {
+        width: 320px !important;
+        margin: 30px auto !important;
+        /* Symmetric 30px gap above/below for visual balance */
     }
 
     footer {
@@ -173,22 +194,13 @@ footer {
     }
 
     .logo {
-        height: auto;
-        /* Allow height to scale naturally */
-        width: auto;
-        max-width: 120px;
-        /* Constrain width further to fit date/time comfortably */
-        max-height: 60px;
-        /* Ensure it fits vertically */
+        font-size: 32px;
         margin: 0;
-        /* Reset margins */
-        object-fit: contain;
-        /* Prevent distortion */
     }
 
     .date-display,
     .time-display {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
         /* Keep simplified font size */
     }
 }
@@ -201,17 +213,17 @@ footer {
 .social-icon {
     width: 20px;
     height: 20px;
-    fill: #ffffff;
+    fill: #ff7900;
     transition: fill 0.2s ease;
 }
 
 .social-icons a:hover .social-icon {
-    fill: #0438A2;
-    /* Matched to logo 'H' star blue (Sampled: #0438A2) */
+    fill: #ff7900;
+    /* Matched to logo orange (#ff7900) */
 }
 
 .social-icons a {
-    color: #666;
+    color: #ff7900;
     text-decoration: none;
     /* Font inherited from body */
     font-size: 0.7rem;
@@ -222,7 +234,7 @@ footer {
 }
 
 .social-icons a:hover {
-    color: #fff;
+    color: #ff7900;
 }
 
 /* Logs Page Specific Styles */
@@ -262,7 +274,7 @@ footer {
     font-weight: 300;
     text-transform: uppercase;
     /* All caps as requested */
-    color: #ffffff;
+    color: #ff7900;
 }
 
 /* Custom Triangle Icon */
@@ -289,7 +301,7 @@ footer {
     font-size: 0.8rem;
     /* Matched to navigation */
     text-transform: uppercase;
-    color: #ffffff;
+    color: #ff7900;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -361,7 +373,7 @@ footer {
         transform: translateY(-50%);
         width: fit-content;
         max-width: 300px;
-        color: #888;
+        color: #ff7900;
         font-size: 0.8rem;
         line-height: 1.4;
         text-transform: uppercase;
@@ -369,10 +381,10 @@ footer {
         text-align: left;
 
         /* Requested Dashed Line Style */
-        border: 1px dashed #ffffff;
+        border: 1px dashed #ff7900;
         padding: 10px;
         /* Adjusted padding since it's not a box anymore */
-        background-color: #000;
+        background-color: #ffffff;
         /* Ensure text is readable over anything */
     }
 }
@@ -387,91 +399,7 @@ html {
     -ms-overflow-style: none;
 }
 
-/* Subscribe Page Styles */
-.subscribe-main {
-    /* height: calc(100vh - 200px); REMOVED */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.subscribe-content {
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
-}
-
-.subscribe-title {
-    font-size: 1rem;
-    font-weight: 300;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-.subscribe-desc {
-    font-size: 0.75rem;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    color: #888;
-}
-
-.subscribe-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.subscribe-input {
-    background: transparent;
-    border: 1px dashed #ffffff;
-    padding: 12px;
-    color: #fff;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    text-align: center;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.subscribe-input:focus {
-    border-color: #fff;
-}
-
-.subscribe-button {
-    background: #fff;
-    color: #000;
-    border: none;
-    padding: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-.subscribe-button:hover {
-    opacity: 0.8;
-}
-
-.subscribe-title {
-    font-size: 1rem;
-    font-weight: 300;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-    text-align: center;
-}
-
-.subscribe-message {
-    color: #888;
-    /* Lighter/Dimmer */
-    font-size: 0.75rem;
-    /* Smaller */
-    margin-top: 27px;
-    letter-spacing: 1px;
-    animation: fadeIn 0.5s ease;
-    text-align: center;
-    width: 100%;
-}
+/* ... navigation styles follow ... */
 
 @keyframes fadeIn {
     from {
@@ -520,7 +448,7 @@ html {
 }
 
 .about-text a {
-    color: #0438A2;
+    color: #ff7900;
     /* User confirmed hex code */
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -528,7 +456,7 @@ html {
 }
 
 .about-text a:hover {
-    color: #fff;
+    color: #ff7900;
     /* Brighten on hover */
 }
 
@@ -540,7 +468,7 @@ html {
 
 .about-links a {
     font-size: 0.7rem;
-    color: #fff;
+    color: #ff7900;
     text-decoration: underline;
     text-underline-offset: 4px;
     transition: color 0.2s;
@@ -577,8 +505,8 @@ html {
 
 .playlist-list li {
     font-size: 0.8rem;
-    color: #fff;
-    border-bottom: 1px dashed #ffffff;
+    color: #ff7900;
+    border-bottom: 1px dashed #ff7900;
     padding-bottom: 10px;
     transition: color 0.2s, border-bottom-color 0.2s;
 }
@@ -647,7 +575,7 @@ html {
 
 .shop-status {
     font-size: 0.8rem;
-    color: #888;
+    color: #ff7900;
 }
 
 .use-list {
@@ -659,7 +587,7 @@ html {
 
 .use-list li {
     font-size: 0.8rem;
-    color: #ccc;
+    color: #ff7900;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -668,16 +596,252 @@ html {
 
 .use-list img {
     height: 180px;
-    /* Increased height */
-    width: auto;
-    /* Let width adjust to maintain aspect ratio */
+    width: 180px;
+    /* Square container for consistent visual weight */
     border-radius: 4px;
     margin-top: 5px;
     object-fit: contain;
-    /* Show full image without cropping */
+    /* Items will rescale to fit the 180px box perfectly */
 }
 
-/* Desktop: Grid layout */
+/* Albums Page Styles */
+.albums-main {
+    padding-bottom: 60px;
+}
+
+.albums-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.album-art {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.album-art:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 121, 0, 0.1);
+}
+
+.album-art span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.art-1 {
+    background: linear-gradient(135deg, #ff7900 0%, #ff9d4d 100%);
+}
+
+.art-2 {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+}
+
+.art-3 {
+    background: linear-gradient(135deg, #ff7900 0%, #1a1a1a 100%);
+}
+
+.art-4 {
+    background: linear-gradient(135deg, #f0f0f0 0%, #dcdcdc 100%);
+}
+
+.art-4 span {
+    color: #ff7900;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.album-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #ff7900;
+    text-align: left;
+    margin-bottom: 30px;
+    display: block;
+}
+
+/* Reveal Card Effect (tap to reveal image inside card) */
+.reveal-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.heroi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.reveal-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    opacity: 0;
+    transform: scale(0.88);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+}
+
+.reveal-card.is-open .reveal-img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.reveal-card.is-open .heroi-label {
+    opacity: 0;
+}
+
+/* Vibrations Album Page */
+.vibrations-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 20px;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.vibrations-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.vibrations-label {
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #ff7900;
+}
+
+.vibrations-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.vibrations-gallery img,
+.vibrations-gallery video,
+.vibrations-gallery iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    border: none;
+}
+
+.vibrations-gallery img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.vibrations-gallery video {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.vibrations-gallery img:hover,
+.vibrations-gallery video:hover,
+.video-thumbnail-wrapper:hover video {
+    transform: scale(1.01);
+}
+
+/* Play button overlay for videos */
+.video-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.video-thumbnail-wrapper::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 3rem;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.vibrations-gallery iframe {
+    aspect-ratio: 16 / 9;
+}
+
+.vibrations-title {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    color: #ff7900;
+}
+
+/* Desktop: Grid layout for Albums */
+@media (min-width: 769px) {
+    .albums-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px 40px;
+        padding: 0 40px;
+    }
+}
+
+/* Mobile: Grid layout for Albums */
+@media (max-width: 768px) {
+    .albums-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 15px;
+        padding: 0 20px;
+    }
+
+    .album-art {
+        width: 100%;
+        height: 150px;
+    }
+}
+
 @media (min-width: 769px) {
     .use-list {
         display: grid;
@@ -795,7 +959,7 @@ html {
         display: none;
         /* Hidden by default, toggled via JS */
         font-size: 0.65rem;
-        color: #888;
+        color: #ff7900;
         margin-top: 4px;
         line-height: 1.2;
         text-transform: uppercase;
@@ -904,13 +1068,13 @@ html {
 }
 
 .thought-item {
-    border-bottom: 1px dashed #ffffff;
+    border-bottom: 1px dashed #ff7900;
     padding-bottom: 20px;
 }
 
 .thought-date {
     font-size: 0.7rem;
-    color: #888;
+    color: #ff7900;
     margin-bottom: 10px;
     font-weight: 300;
 }
@@ -918,7 +1082,7 @@ html {
 .thought-text {
     font-size: 0.85rem;
     line-height: 1.6;
-    color: #ccc;
+    color: #ff7900;
 }
 
 /* Mobile-specific Page Overrides */
@@ -973,7 +1137,7 @@ html {
 
 .article-subtitle {
     font-size: 0.8rem;
-    color: #888;
+    color: #ff7900;
     margin-bottom: 25px;
     align-self: flex-start;
     width: 100%;
@@ -982,7 +1146,7 @@ html {
 .article-text {
     font-size: 0.85rem;
     line-height: 1.6;
-    color: #ccc;
+    color: #ff7900;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -1003,8 +1167,8 @@ html {
         width: 100%;
         max-width: 800px;
         text-align: center;
-        margin: 37px auto 0 auto;
-        /* Center container + 37px top gap for symmetry */
+        margin: 0 auto;
+        /* Horizontal center, top padding handled by main */
     }
 
     .nav-list li {
@@ -1014,16 +1178,9 @@ html {
 }
 
 
-/* FORCE MAIN LAYOUT FIX */
-main {
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-}
 
-/* FORCE SUBSCRIBE PADDING FIX */
-.subscribe-main {
-    padding: 37px 20px 20px 20px !important;
-}
+
+
 
 /* About Avatar */
 .about-avatar {
@@ -1031,4 +1188,76 @@ main {
     height: auto;
     display: block;
     margin: 0 auto 30px auto;
+}
+
+/* Gear Images */
+/* Gear Images */
+.use-list img {
+    mix-blend-mode: multiply;
+}
+
+/* Video Embed Style */
+.video-container {
+    width: 100%;
+    max-width: 560px;
+    margin: 30px auto 40px auto;
+    aspect-ratio: 16 / 9;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+/* Lightbox Styles */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: zoom-out;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox img,
+.lightbox video {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.lightbox img {
+    cursor: default;
+}
+
+.lightbox.active img,
+.lightbox.active video {
+    transform: scale(1);
+}
+
+/* Vibrations Desktop Grid Layout */
+@media (min-width: 769px) {
+    .vibrations-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px 40px;
+        align-items: center;
+    }
 }

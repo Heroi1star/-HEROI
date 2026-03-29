@@ -22,7 +22,7 @@ function updateTime() {
         const parts = dateString.split(' ');
         timeZoneCode = parts[parts.length - 1];
     } catch (e) {
-        timeZoneCode = 'LOC';
+        timeZoneCode = 'LOCAL';
     }
 
     const dateStr = `${month}/${day}/${year}`;
@@ -64,47 +64,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    // Subscribe Form Handling
-    const subscribeForm = document.getElementById('subscribe-form');
-    const subscribeMessage = document.getElementById('subscribe-message');
-    const subscribeDesc = document.querySelector('.subscribe-desc');
-    const subscribeInput = document.querySelector('.subscribe-input');
 
-    if (subscribeForm && subscribeMessage) {
-        subscribeForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+});
 
-            const email = subscribeInput.value;
-            const pubId = '190e25f3-8141-497f-8862-338c7b6c5c22';
+// Lightbox Interaction for Vibrations Gallery
+document.addEventListener('DOMContentLoaded', () => {
+    const galleryItems = document.querySelectorAll('.vibrations-gallery img, .vibrations-gallery video');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVideo = document.getElementById('lightbox-video');
 
-            // UI Feedback: Show loading or just success immediately for "optimistic" UI
-            // We'll try to send data, but show success regardless to not block user flow if CORS issues.
+    if (galleryItems.length > 0 && lightbox) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
 
-            try {
-                // Correct Endpoint for standard embeds
-                const formId = 'a16104d2-e21d-476a-9f96-3917f6c80979';
+                if (lightboxImg) lightboxImg.style.display = 'none';
+                if (lightboxVideo) {
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.pause();
+                }
 
-                // Construct URL encoded data (mimicking a standard form submit)
-                const formData = new URLSearchParams();
-                formData.append('form[email]', email);
-                formData.append('form_id', formId);
-                formData.append('utm_source', 'heroi_website');
-                formData.append('utm_medium', 'custom_form');
+                if (item.tagName.toLowerCase() === 'img') {
+                    if (lightboxImg) {
+                        lightboxImg.src = item.src;
+                        lightboxImg.style.display = 'block';
+                    }
+                } else if (item.tagName.toLowerCase() === 'video') {
+                    if (lightboxVideo) {
+                        let src = item.src;
+                        if (src.includes('#t=')) src = src.split('#t=')[0]; // Remove thumbnail hack
+                        lightboxVideo.src = src;
+                        lightboxVideo.style.display = 'block';
+                        lightboxVideo.play();
+                    }
+                }
 
-                // We use no-cors to bypass CORS restrictions on the public form endpoint
-                await fetch('https://subscribe-forms.beehiiv.com/api/submit', {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                });
-            } catch (err) {
-                console.log('Subscription attempt error:', err);
-            }
+                lightbox.style.display = 'flex';
+                setTimeout(() => {
+                    lightbox.classList.add('active');
+                }, 10);
+            });
+        });
 
-            // Show Success State
-            subscribeForm.style.display = 'none';
-            if (subscribeDesc) subscribeDesc.style.display = 'none';
-            subscribeMessage.style.display = 'block';
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightboxVideo) return;
+            
+            lightbox.classList.remove('active');
+            if (lightboxVideo) lightboxVideo.pause();
+
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                if (lightboxImg) lightboxImg.src = '';
+                if (lightboxVideo) lightboxVideo.src = '';
+            }, 300); // Matches CSS transition duration
         });
     }
 });
