@@ -67,57 +67,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Lightbox Interaction for Vibrations Gallery
+// Carousel Interaction for Vibrations Gallery
 document.addEventListener('DOMContentLoaded', () => {
-    const galleryItems = document.querySelectorAll('.vibrations-gallery img, .vibrations-gallery video');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxVideo = document.getElementById('lightbox-video');
+    const container = document.querySelector('.carousel-container');
+    const track = document.querySelector('.carousel-track');
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
 
-    if (galleryItems.length > 0 && lightbox) {
-        galleryItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
+    if (track && nextBtn && prevBtn) {
+        // Collect all items (imgs and video wrappers)
+        const slides = Array.from(track.children);
+        let currentIndex = 0;
 
-                if (lightboxImg) lightboxImg.style.display = 'none';
-                if (lightboxVideo) {
-                    lightboxVideo.style.display = 'none';
-                    lightboxVideo.pause();
-                }
+        function updateCarousel() {
+            const amountToMove = -100 * currentIndex;
+            track.style.transform = `translateX(${amountToMove}%)`;
+        }
 
-                if (item.tagName.toLowerCase() === 'img') {
-                    if (lightboxImg) {
-                        lightboxImg.src = item.src;
-                        lightboxImg.style.display = 'block';
-                    }
-                } else if (item.tagName.toLowerCase() === 'video') {
-                    if (lightboxVideo) {
-                        let src = item.src;
-                        if (src.includes('#t=')) src = src.split('#t=')[0]; // Remove thumbnail hack
-                        lightboxVideo.src = src;
-                        lightboxVideo.style.display = 'block';
-                        lightboxVideo.play();
-                    }
-                }
-
-                lightbox.style.display = 'flex';
-                setTimeout(() => {
-                    lightbox.classList.add('active');
-                }, 10);
-            });
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
         });
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightboxVideo) return;
-            
-            lightbox.classList.remove('active');
-            if (lightboxVideo) lightboxVideo.pause();
-
-            setTimeout(() => {
-                lightbox.style.display = 'none';
-                if (lightboxImg) lightboxImg.src = '';
-                if (lightboxVideo) lightboxVideo.src = '';
-            }, 300); // Matches CSS transition duration
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+            updateCarousel();
         });
+
+        // Keyboard Navigation (Left/Right Arrows)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            }
+        });
+
+        // Swipe Detection for Mobile — attached to document for widest capture
+        let touchStartX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].clientX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextBtn.click(); // Swipe Left -> Next
+                } else {
+                    prevBtn.click(); // Swipe Right -> Prev
+                }
+            }
+        }, { passive: true });
     }
+});
+// Native Video Playback inside Carousel
+document.addEventListener('DOMContentLoaded', () => {
+    const videoWrappers = document.querySelectorAll('.video-thumbnail-wrapper');
+    videoWrappers.forEach(wrapper => {
+        const video = wrapper.querySelector('video');
+        if (video) {
+            wrapper.addEventListener('click', (e) => {
+                if (!wrapper.classList.contains('is-playing')) {
+                    e.preventDefault();
+                    wrapper.classList.add('is-playing');
+                    video.setAttribute('controls', 'true');
+                    
+                    if (video.src.includes('#t=')) {
+                        video.src = video.src.split('#t=')[0];
+                    }
+                    video.play().catch(err => console.log('Playback error:', err));
+                }
+            });
+        }
+    });
 });

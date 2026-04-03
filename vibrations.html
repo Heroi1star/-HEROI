@@ -4,14 +4,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEROI - VIBRATIONS</title>
+    <title>HEROI - BRAZIL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@800&family=IBM+Plex+Mono:wght@300;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=215">
     <link rel="icon" type="image/png" href="assets/logo_v7_orange.png">
+    <style>
+        /* ── Grid Gallery ── */
+        .vib-grid {
+            columns: 3;
+            column-gap: 8px;
+            padding: 20px 40px 60px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vib-item {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            overflow: hidden;
+            cursor: zoom-in;
+            display: block;
+        }
+
+        .vib-item img,
+        .vib-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.25s ease;
+        }
+
+        .vib-item:hover img,
+        .vib-item:hover video {
+            opacity: 0.85;
+        }
+
+        /* ── Play button overlay for videos ── */
+        .vib-item[data-type="video"] {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .vib-item[data-type="video"]::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 121, 0, 0.9);
+            font-size: 3rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ── Lightbox ── */
+        .vib-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.96);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: zoom-out;
+            padding: 40px; /* Safe space for close button */
+            box-sizing: border-box;
+        }
+
+        .vib-lightbox.active {
+            display: flex;
+        }
+
+        .vib-lightbox img,
+        .vib-lightbox video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .vib-lightbox-close {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            font-size: 2.2rem;
+            color: #ff7900;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'IBM Plex Mono', monospace;
+            z-index: 1210;
+            line-height: 1;
+            padding: 10px;
+        }
+
+        /* ── Mobile: JS masonry takes over ── */
+        @media (max-width: 768px) {
+            .vib-grid {
+                display: block;
+                position: relative;
+                padding: 20px 4px 40px;
+                columns: unset;
+            }
+            .vib-item {
+                position: absolute;
+                margin: 0;
+            }
+            .vib-item img,
+            .vib-item video {
+                width: 100%;
+                height: auto;
+                object-fit: unset;
+            }
+        }
+
+        /* hide old carousel styles from leaking */
+        .vibrations-main {
+            padding: 0 !important;
+        }
+    </style>
 </head>
 
 <body class="vibrations-page">
@@ -28,61 +143,199 @@
     </header>
 
     <main class="vibrations-main">
-        <div class="vibrations-content">
-            <div class="vibrations-gallery">
-                <img src="assets/vibrations_cover.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_01.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_02.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_03.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_04.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_05.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_06.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_07.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_08.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_09.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_10.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_11.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_12.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_13.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_14.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_15.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_16.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_17.jpg" alt="VIBRATIONS">
-                <img src="assets/vibrations_18.jpg" alt="VIBRATIONS">
-                <div class="video-thumbnail-wrapper">
-                    <video src="assets/vibrations_vid.mp4.MOV#t=0.001" playsinline preload="metadata"></video>
-                </div>
+        <div class="vib-grid">
+
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_cover.jpg">
+                <img src="assets/vibrations_cover.jpg" alt="VIBRATIONS" loading="lazy">
             </div>
-            <p class="vibrations-title">VIBRATIONS</p>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_01.jpg">
+                <img src="assets/vibrations_01.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_02.jpg">
+                <img src="assets/vibrations_02.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_03.jpg">
+                <img src="assets/vibrations_03.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_04.jpg">
+                <img src="assets/vibrations_04.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_05.jpg">
+                <img src="assets/vibrations_05.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_06.jpg">
+                <img src="assets/vibrations_06.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_07.jpg">
+                <img src="assets/vibrations_07.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_08.jpg">
+                <img src="assets/vibrations_08.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_09.jpg">
+                <img src="assets/vibrations_09.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_10.jpg">
+                <img src="assets/vibrations_10.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_11.jpg">
+                <img src="assets/vibrations_11.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_12.jpg">
+                <img src="assets/vibrations_12.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_13.jpg">
+                <img src="assets/vibrations_13.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_14.jpg">
+                <img src="assets/vibrations_14.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_15.jpg">
+                <img src="assets/vibrations_15.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_16.jpg">
+                <img src="assets/vibrations_16.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_17.jpg">
+                <img src="assets/vibrations_17.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/vibrations_18.jpg">
+                <img src="assets/vibrations_18.jpg" alt="VIBRATIONS" loading="lazy">
+            </div>
+
+            <!-- Videos -->
+            <div class="vib-item" data-type="video" data-src="assets/vibrations_vid.mp4.MOV">
+                <video src="assets/vibrations_vid.mp4.MOV#t=0.001" playsinline preload="metadata" muted></video>
+            </div>
+            <div class="vib-item" data-type="video" data-src="assets/IMG_6599.MOV">
+                <video src="assets/IMG_6599.MOV#t=0.001" playsinline preload="metadata" muted></video>
+            </div>
+
         </div>
     </main>
 
-    <footer>
-        <div class="social-icons">
-            <a href="https://x.com/HEROI1STAR" target="_blank" aria-label="X (formerly Twitter)">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="social-icon">
-                    <path
-                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-                    </path>
-                </svg>
-            </a>
-            <a href="https://www.instagram.com/HEROI1STAR" target="_blank" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="social-icon">
-                    <path
-                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
-                    </path>
-                </svg>
-            </a>
-        </div>
-    </footer>
-
-    <!-- Lightbox Overlay -->
-    <div id="lightbox" class="lightbox">
-        <img id="lightbox-img" src="" style="display: none;">
-        <video id="lightbox-video" src="" controls playsinline style="display: none;"></video>
+    <!-- Lightbox -->
+    <div id="vib-lightbox" class="vib-lightbox">
+        <button class="vib-lightbox-close" id="vib-close">✕</button>
+        <img id="vib-lb-img" src="" style="display:none;" alt="Enlarged photo">
+        <video id="vib-lb-video" src="" controls playsinline style="display:none;"></video>
     </div>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=201"></script>
+    <script>
+        // Grid lightbox state
+        const items = [...document.querySelectorAll('.vib-item')];
+        const lb = document.getElementById('vib-lightbox');
+        const lbImg = document.getElementById('vib-lb-img');
+        const lbVid = document.getElementById('vib-lb-video');
+        const lbClose = document.getElementById('vib-close');
+        let currentIndex = -1;
+
+        function showItem(index) {
+            if (index < 0) index = items.length - 1;
+            if (index >= items.length) index = 0;
+            currentIndex = index;
+
+            const item = items[currentIndex];
+            const type = item.dataset.type;
+            const src = item.dataset.src;
+
+            if (type === 'video') {
+                lbImg.style.display = 'none';
+                lbVid.src = src;
+                lbVid.style.display = 'block';
+                lbVid.play();
+            } else {
+                lbVid.style.display = 'none';
+                lbVid.pause();
+                lbVid.src = '';
+                lbImg.src = src;
+                lbImg.style.display = 'block';
+            }
+            lb.classList.add('active');
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => showItem(index));
+        });
+
+        function closeLb() {
+            lb.classList.remove('active');
+            lbVid.pause();
+            lbVid.src = '';
+            lbImg.src = '';
+            currentIndex = -1;
+        }
+
+        lbClose.addEventListener('click', closeLb);
+        lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+        // Swipe & Navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lb.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lb.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) { // threshold
+                if (diff > 0) showItem(currentIndex + 1); // Swipe left -> next
+                else showItem(currentIndex - 1); // Swipe right -> prev
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLb();
+            if (e.key === 'ArrowRight') showItem(currentIndex + 1);
+            if (e.key === 'ArrowLeft') showItem(currentIndex - 1);
+        });
+
+        // ── JS Masonry for mobile ──
+        function masonryLayout() {
+            if (window.innerWidth > 768) {
+                // Reset inline styles on desktop
+                document.querySelectorAll('.vib-item').forEach(el => el.removeAttribute('style'));
+                document.querySelector('.vib-grid').style.height = '';
+                return;
+            }
+            const grid = document.querySelector('.vib-grid');
+            const els = [...grid.querySelectorAll('.vib-item')];
+            const gap = 4;
+            const sidePad = 4;
+            const topPad = 28; // Increased for same desktop-like gap
+            const totalW = grid.clientWidth - sidePad * 2;
+            const colW = (totalW - gap) / 2;
+            const tops = [topPad, topPad];
+
+            els.forEach(el => {
+                const col = tops[0] <= tops[1] ? 0 : 1;
+                const x = sidePad + col * (colW + gap);
+                const y = tops[col];
+                el.style.cssText = `position:absolute;width:${colW}px;left:${x}px;top:${y}px;margin:0;`;
+                tops[col] += el.offsetHeight + gap;
+            });
+            grid.style.height = (Math.max(...tops) + sidePad) + 'px';
+        }
+
+        // Wait for all images then run masonry
+        const allImgs = document.querySelectorAll('.vib-item img');
+        let loaded = 0;
+        function tryMasonry() { if (++loaded >= allImgs.length) masonryLayout(); }
+        allImgs.forEach(img => {
+            if (img.complete) tryMasonry();
+            else { img.addEventListener('load', tryMasonry); img.addEventListener('error', tryMasonry); }
+        });
+        if (!allImgs.length) masonryLayout();
+        window.addEventListener('resize', masonryLayout);
+    </script>
 </body>
 
 </html>

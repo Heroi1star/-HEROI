@@ -13,12 +13,12 @@ body {
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     /* Fixed alignment for consistency */
-    min-height: 100vh;
+    min-height: 98vh;
     /* Allow page to grow */
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     /* Allow vertical scrolling */
@@ -121,7 +121,7 @@ main {
     /* Items take full width of container */
     width: fit-content;
     /* Container shrinks to widest item */
-    padding: 0;
+    padding: 15px;
     /* Ensure no default padding */
 }
 
@@ -259,9 +259,8 @@ footer {
 }
 
 
-.logs-container details {
-    cursor: pointer;
-}
+
+
 
 .logs-container summary {
     list-style: none;
@@ -329,7 +328,7 @@ footer {
 .large-preview iframe,
 .large-preview .twitter-tweet,
 .large-preview img {
-    max-width: 100% !important;
+    max-width: 90% !important;
     height: auto;
     border: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -338,7 +337,7 @@ footer {
 
 .large-preview iframe.youtube-embed {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     aspect-ratio: 16 / 9;
 }
 
@@ -480,7 +479,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
 }
 
 .playlist-content {
@@ -558,7 +557,7 @@ html {
 .shop-content,
 .use-content {
     text-align: center;
-    max-width: 1200px;
+    max-width: 500px;
     /* Increased to allow spreading items */
     width: 100%;
     padding-bottom: 0px;
@@ -611,14 +610,15 @@ html {
 
 .albums-grid {
     list-style: none;
-    padding: 0;
+    padding: 15px;
     margin: 0;
 }
 
 .album-art {
-    width: 180px;
-    height: 180px;
-    border-radius: 12px;
+    width: 210px;
+    height: 120px; /* Slimmer rectangular ratio */
+    border-radius: 0; /* Direct request: no rounded corners */
+    background-color: transparent; /* Direct request: same as website background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -627,6 +627,7 @@ html {
     margin-bottom: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
 }
 
 .album-art:hover {
@@ -647,19 +648,26 @@ html {
 }
 
 .art-1 {
-    background: linear-gradient(135deg, #ff7900 0%, #ff9d4d 100%);
+    background: url('assets/brazil_flag.png') no-repeat center/cover;
 }
 
 .art-2 {
-    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    background: url('assets/cape_verde_flag.png') no-repeat center/cover;
 }
 
 .art-3 {
-    background: linear-gradient(135deg, #ff7900 0%, #1a1a1a 100%);
+    background: url('assets/nepal_flag_transparent.png') no-repeat center/contain;
+    background-color: transparent;
+    box-shadow: none; /* No shadow for full transparency */
+}
+
+.art-3:hover {
+    transform: translateY(-5px);
+    box-shadow: none;
 }
 
 .art-4 {
-    background: linear-gradient(135deg, #f0f0f0 0%, #dcdcdc 100%);
+    background: url('assets/spain_flag.png') no-repeat center/cover;
 }
 
 .art-4 span {
@@ -679,7 +687,6 @@ html {
 
 /* Reveal Card Effect (tap to reveal image inside card) */
 .reveal-card {
-    cursor: pointer;
     position: relative;
 }
 
@@ -725,7 +732,7 @@ html {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 40px 20px;
+    padding: 15px;
     flex-grow: 1;
     width: 100%;
 }
@@ -735,7 +742,7 @@ html {
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 100%;
     width: 100%;
 }
 
@@ -755,41 +762,23 @@ html {
 }
 
 .vibrations-gallery img,
-.vibrations-gallery video,
 .vibrations-gallery iframe {
     width: 100%;
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 10px;
+    height: auto;
+    border-radius: 0;
     display: block;
     border: none;
 }
 
-.vibrations-gallery img {
-    cursor: zoom-in;
-    transition: transform 0.2s ease;
-}
 
-.vibrations-gallery video {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.vibrations-gallery img:hover,
-.vibrations-gallery video:hover,
-.video-thumbnail-wrapper:hover video {
-    transform: scale(1.01);
-}
 
 /* Play button overlay for videos */
 .video-thumbnail-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 10px;
+    height: auto;
+    border-radius: 0;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .video-thumbnail-wrapper::after {
@@ -832,13 +821,14 @@ html {
     .albums-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px 15px;
-        padding: 0 20px;
+        gap: 80px 40px; /* Even more space for mobile */
+        padding: 20px;
     }
 
     .album-art {
         width: 100%;
-        height: 150px;
+        height: auto;
+        aspect-ratio: 210/120;
     }
 }
 
@@ -879,7 +869,7 @@ html {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px 10px;
-        padding: 0;
+        padding: 15px;
     }
 
     .use-list li img {
@@ -903,7 +893,7 @@ html {
         width: 100%;
         max-width: 100%;
         margin: 0;
-        padding: 0;
+        padding: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -916,14 +906,14 @@ html {
         width: 280px;
         /* Fixed width to ensure text stays put and doesn't shift */
         margin: 0 auto;
-        padding: 0;
+        padding: 15px;
         display: block;
     }
 
     .logs-container summary {
         width: 100%;
         justify-content: flex-start;
-        padding: 0;
+        padding: 15px;
         margin: 0;
         line-height: inherit;
         /* Reset to inherit to strictly match desktop/homepage rhythm */
@@ -951,8 +941,7 @@ html {
     .log-details-list li.has-preview {
         flex-direction: column;
         align-items: flex-start;
-        cursor: pointer;
-        padding: 0;
+            padding: 15px;
     }
 
     .mobile-log-desc {
@@ -985,7 +974,7 @@ html {
 
     .large-preview {
         display: none;
-        width: 100vw;
+        width: 100%;
         max-width: none;
 
         /* Breakout Math: 
@@ -1207,16 +1196,83 @@ html {
 .video-container iframe {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: none !important;
     border: none;
 }
+
+/* Vibrations Carousel Layout */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 98vh;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.carousel-track {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0 !important;
+    width: 100%;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    align-items: center;
+}
+
+.carousel-track > .carousel-slide,
+.carousel-track > .video-thumbnail-wrapper {
+    flex: 0 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent !important;
+    color: #ff7900;
+    border: none;
+    font-size: 2.5rem;
+    font-weight: bold;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+.carousel-btn:hover {
+    transform: translateY(-50%) scale(1.2);
+    opacity: 1;
+}
+
+.prev-btn { left: 40px; }
+.next-btn { right: 40px; }
+
+
 
 /* Lightbox Styles */
 .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: none;
@@ -1238,7 +1294,7 @@ html {
     max-width: 90%;
     max-height: 90vh;
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    box-shadow: none !important;
     transform: scale(0.95);
     transition: transform 0.3s ease;
 }
@@ -1252,12 +1308,55 @@ html {
     transform: scale(1);
 }
 
-/* Vibrations Desktop Grid Layout */
-@media (min-width: 769px) {
-    .vibrations-gallery {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 60px 40px;
-        align-items: center;
+.carousel-slide > img,
+.video-thumbnail-wrapper video {
+    max-width: calc(100% - 20px) !important;
+    max-height: calc(100% - 20px) !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    object-fit: contain !important;
+}
+
+
+.video-thumbnail-wrapper.is-playing::after {
+    display: none !important;
+}
+\n.vibrations-main header { margin-top: 10px; margin-bottom: 10px; }
+
+/* Mobile Gallery Optimization */
+@media (max-width: 500px) {
+    .carousel-track > .carousel-slide,
+    .carousel-track > .video-thumbnail-wrapper {
+        padding: 4px !important;
     }
+
+    .carousel-slide > img,
+    .video-thumbnail-wrapper video {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        box-shadow: none !important;
+    }
+
+    .prev-btn { left: 10px !important; }
+    .next-btn { right: 10px !important; }
+}
+
+
+/* FINAL SHADOW PURGE */
+body.vibrations-page, body.vibrations-page * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    outline: none !important;
+}
+
+body.vibrations-page {
+    background: #ffffff !important;
+}
+
+.carousel-container {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
