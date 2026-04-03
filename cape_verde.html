@@ -43,6 +43,24 @@
             opacity: 0.85;
         }
 
+        /* ── Play button overlay for videos ── */
+        .vib-item[data-type="video"] {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .vib-item[data-type="video"]::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 121, 0, 0.9);
+            font-size: 3rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+
         /* ── Lightbox ── */
         .vib-lightbox {
             position: fixed;
