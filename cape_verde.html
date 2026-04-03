@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEROI - CAPE VERDE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@800&family=IBM+Plex+Mono:wght@300;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=215">
+    <link rel="icon" type="image/png" href="assets/logo_v7_orange.png">
+    <style>
+        /* ── Grid Gallery ── */
+        .vib-grid {
+            columns: 3;
+            column-gap: 8px;
+            padding: 20px 40px 60px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vib-item {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            overflow: hidden;
+            cursor: zoom-in;
+            display: block;
+        }
+
+        .vib-item img,
+        .vib-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.25s ease;
+        }
+
+        .vib-item:hover img,
+        .vib-item:hover video {
+            opacity: 0.85;
+        }
+
+        /* ── Lightbox ── */
+        .vib-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.96);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: zoom-out;
+            padding: 40px; /* Safe space for close button */
+            box-sizing: border-box;
+        }
+
+        .vib-lightbox.active {
+            display: flex;
+        }
+
+        .vib-lightbox img,
+        .vib-lightbox video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .vib-lightbox-close {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            font-size: 2.2rem;
+            color: #ff7900;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'IBM Plex Mono', monospace;
+            z-index: 1210;
+            line-height: 1;
+            padding: 10px;
+        }
+
+        /* ── Mobile: JS masonry takes over ── */
+        @media (max-width: 768px) {
+            .vib-grid {
+                display: block;
+                position: relative;
+                padding: 20px 4px 40px;
+                columns: unset;
+            }
+            .vib-item {
+                position: absolute;
+                margin: 0;
+            }
+            .vib-item img,
+            .vib-item video {
+                width: 100%;
+                height: auto;
+                object-fit: unset;
+            }
+        }
+
+        /* hide old carousel styles from leaking */
+        .vibrations-main {
+            padding: 0 !important;
+        }
+    </style>
+</head>
+
+<body class="vibrations-page">
+
+    <header>
+        <div id="date-display" class="date-display"></div>
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/about_avatar.png" alt="HEROI Avatar" class="header-avatar">
+                <span class="logo">HEROI(*)</span>
+            </a>
+        </div>
+        <div id="time-display" class="time-display"></div>
+    </header>
+
+    <main class="vibrations-main">
+        <div class="vib-grid">
+
+            <div class="vib-item" data-type="image" data-src="assets/cape_verde_01.jpg">
+                <img src="assets/cape_verde_01.jpg" alt="CAPE VERDE" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/cape_verde_02.jpg">
+                <img src="assets/cape_verde_02.jpg" alt="CAPE VERDE" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/cape_verde_03.jpg">
+                <img src="assets/cape_verde_03.jpg" alt="CAPE VERDE" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/cape_verde_04.jpg">
+                <img src="assets/cape_verde_04.jpg" alt="CAPE VERDE" loading="lazy">
+            </div>
+            <div class="vib-item" data-type="image" data-src="assets/cape_verde_05.jpg">
+                <img src="assets/cape_verde_05.jpg" alt="CAPE VERDE" loading="lazy">
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="vib-lightbox" class="vib-lightbox">
+        <button class="vib-lightbox-close" id="vib-close">✕</button>
+        <img id="vib-lb-img" src="" style="display:none;" alt="Enlarged photo">
+        <video id="vib-lb-video" src="" controls playsinline style="display:none;"></video>
+    </div>
+
+    <script src="script.js?v=201"></script>
+    <script>
+        // Grid lightbox state
+        const items = [...document.querySelectorAll('.vib-item')];
+        const lb = document.getElementById('vib-lightbox');
+        const lbImg = document.getElementById('vib-lb-img');
+        const lbVid = document.getElementById('vib-lb-video');
+        const lbClose = document.getElementById('vib-close');
+        let currentIndex = -1;
+
+        function showItem(index) {
+            if (index < 0) index = items.length - 1;
+            if (index >= items.length) index = 0;
+            currentIndex = index;
+
+            const item = items[currentIndex];
+            const type = item.dataset.type;
+            const src = item.dataset.src;
+
+            if (type === 'video') {
+                lbImg.style.display = 'none';
+                lbVid.src = src;
+                lbVid.style.display = 'block';
+                lbVid.play();
+            } else {
+                lbVid.style.display = 'none';
+                lbVid.pause();
+                lbVid.src = '';
+                lbImg.src = src;
+                lbImg.style.display = 'block';
+            }
+            lb.classList.add('active');
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => showItem(index));
+        });
+
+        function closeLb() {
+            lb.classList.remove('active');
+            lbVid.pause();
+            lbVid.src = '';
+            lbImg.src = '';
+            currentIndex = -1;
+        }
+
+        lbClose.addEventListener('click', closeLb);
+        lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+        // Swipe & Navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lb.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lb.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) { // threshold
+                if (diff > 0) showItem(currentIndex + 1); // Swipe left -> next
+                else showItem(currentIndex - 1); // Swipe right -> prev
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLb();
+            if (e.key === 'ArrowRight') showItem(currentIndex + 1);
+            if (e.key === 'ArrowLeft') showItem(currentIndex - 1);
+        });
+
+        // ── JS Masonry for mobile ──
+        function masonryLayout() {
+            if (window.innerWidth > 768) {
+                // Reset inline styles on desktop
+                document.querySelectorAll('.vib-item').forEach(el => el.removeAttribute('style'));
+                document.querySelector('.vib-grid').style.height = '';
+                return;
+            }
+            const grid = document.querySelector('.vib-grid');
+            const els = [...grid.querySelectorAll('.vib-item')];
+            const gap = 4;
+            const sidePad = 4;
+            const topPad = 28; // Increased for same desktop-like gap
+            const totalW = grid.clientWidth - sidePad * 2;
+            const colW = (totalW - gap) / 2;
+            const tops = [topPad, topPad];
+
+            els.forEach(el => {
+                const col = tops[0] <= tops[1] ? 0 : 1;
+                const x = sidePad + col * (colW + gap);
+                const y = tops[col];
+                el.style.cssText = `position:absolute;width:${colW}px;left:${x}px;top:${y}px;margin:0;`;
+                tops[col] += el.offsetHeight + gap;
+            });
+            grid.style.height = (Math.max(...tops) + sidePad) + 'px';
+        }
+
+        // Wait for all images then run masonry
+        const allImgs = document.querySelectorAll('.vib-item img');
+        let loaded = 0;
+        function tryMasonry() { if (++loaded >= allImgs.length) masonryLayout(); }
+        allImgs.forEach(img => {
+            if (img.complete) tryMasonry();
+            else { img.addEventListener('load', tryMasonry); img.addEventListener('error', tryMasonry); }
+        });
+        if (!allImgs.length) masonryLayout();
+        window.addEventListener('resize', masonryLayout);
+    </script>
+</body>
+
+</html>
